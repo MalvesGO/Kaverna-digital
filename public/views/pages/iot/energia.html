@@ -1,0 +1,171 @@
+
+<div class="container-fluid" style="padding-top: 1.5cm" ng-controller="mqttControllerEnergia">
+
+    <div class="loading" ng-show="loader.loading">Loading...</div>
+
+
+    <div ng-hide="loader.loading">
+
+        <div class="box-body ve no-padding" >
+            <div class="box-header">
+                <h3 class="box-title">Serviços sendo Monitorados - <strong>Eletrecidade</strong> </h3>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-aqua">
+                             <img class="img-responsive" src="https://cdn6.aptoide.com/imgs/1/c/a/1caec56397fc9c9a26f35c1e0892e9d0_icon.png?w=256" alt="">
+                        </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Mqtt</span>
+                            <span ng-class="{
+                    'label label-success': statusMqtt === 'Conectado',
+                    'label label-warning': statusMqtt === 'Conectando ao servidor Mqtt...',
+                    'label label-danger': statusMqtt == 'Conexão Perdida'}">
+                    {{statusMqtt}}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6">
+                    <div ng-class="statusVoltagem()">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img src="https://cdn3.iconfinder.com/data/icons/ico-nic-plug/128/Plug_Power_Socket_Charge_Charging_Voltage_Cable_Connect_Source_Supply_Plug-in_Electric_Electricity_Energy_Ok_Confirm_Complete_Accept_Check_Allow_Available-512.png" class="img-responsive" alt="">
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">
+                                        <span  class="info-box-number">{{voltagem}} V</span>
+                                    </div>
+                                    <div>Tensão elétrica</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">Verificar</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div ng-class="statusAmperagem()">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img src="http://www.hyiq.org/Images/Buttons/Hamburger%20MENU%20navigation%20round%20rounded%20edges.png" class="img-responsive" alt="">
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">
+                                        <span  class="info-box-number">{{amperagem}} A</span>
+                                    </div>
+                                    <div>Corrente elétrica</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">Verificar</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div ng-class="statusWats()">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img src="https://cdn0.iconfinder.com/data/icons/electricity-9/200/353_electricity-512.png" class="img-responsive" alt="">
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">
+                                        <span  class="info-box-number">{{wats}} W</span>
+                                    </div>
+                                    <div>Potência elétrica</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">Verificar</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="panel bg-aqua">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-bolt fa-5x" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">
+                                        <span  class="info-box-number">{{watsHora}} Wh</span>
+                                    </div>
+                                    <div>Consumo energético</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">Verificar</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div ng-class="statusCl()">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-money fa-5x" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">
+                                        <span  class="info-box-number">R$ {{cl}}</span>
+                                    </div>
+                                    <div>Valor Fatura</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">Verificar</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

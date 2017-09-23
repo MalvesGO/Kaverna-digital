@@ -1,0 +1,57 @@
+<div class="container-fluid" style="padding-top: 1.5cm" ng-controller="mqttController">
+
+    <div class="box-body no-padding" >
+        <div class="box-header">
+            <h3 class="box-title">Iluminaçao </h3>
+        </div>
+
+        <div class="col-md-12 col-sm-6 col-xs-12">
+            <div class="info-box">
+                        <span class="info-box-icon bg-aqua">
+                             <img class="img-responsive" src="https://cdn6.aptoide.com/imgs/1/c/a/1caec56397fc9c9a26f35c1e0892e9d0_icon.png?w=256" alt="">
+                        </span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Mqtt</span>
+                            <span ng-class="{
+                    'label label-success': statusMqtt === 'Conectado',
+                    'label label-warning': statusMqtt === 'Conectando ao servidor Mqtt...',
+                    'label label-danger': statusMqtt == 'Desconectado'}">
+                    {{statusMqtt}}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-lightbulb-o fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">
+                            <span>{{statusLuz}}</span>
+                        </div>
+                        <div>Lampada</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <a class="btn btn-success btn-block" ng-click="liga()">LIGA</a>
+                    <a class="btn btn-danger btn-block" ng-click="desliga()">DESLIGA</a>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+

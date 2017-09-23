@@ -1,0 +1,28 @@
+<style>
+
+    #map {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+    }
+    #repeat{
+        display: inline;
+    }
+    #names {
+        cursor: pointer;
+    }
+</style>
+
+<div id="map"></div>
+<div id="repeat" ng-repeat="marker in markers | orderBy : 'title'">
+    <a id="country_container" href="#" ng-click="openInfoWindow($event, marker)">
+        <label id="names" >{{marker.title}}</label></a>
+</div>
+
+
+
+
+
+
+
