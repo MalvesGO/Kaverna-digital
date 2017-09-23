@@ -15,9 +15,8 @@ angular.module('app.routes', ['ngRoute'])
 			})
 
 			.when('/clima', {
-				templateUrl: 'views/pages/iot/casa.html',
-				controller: 'mqttController',
-				controllerAs: 'mqtt'
+				templateUrl: 'views/pages/iot/clima.html',
+				controller: 'mqttControllerClima'
 			})
 
 			.when('/energia', {
@@ -32,7 +31,7 @@ angular.module('app.routes', ['ngRoute'])
 
 			.when('/agua', {
 				templateUrl: 'views/pages/iot/agua.html',
-				controller: 'mqttController',
+				controller: 'mqttControllerClima',
 				controllerAs: 'mqtt'
 			})
 
@@ -46,4 +45,9 @@ angular.module('app.routes', ['ngRoute'])
 				templateUrl: 'views/pages/error/error.html'
 			});
 
+		$locationProvider.hashPrefix('');
+		$locationProvider.html5Mode({
+			enabled: false,
+			requireBase: true
+		})
 	});
