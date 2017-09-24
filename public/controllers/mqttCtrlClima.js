@@ -2,16 +2,14 @@ angular.module('mqttCtrlClima', ['ngAnimate'])
 
     .controller('mqttControllerClima', function($scope, $firebaseArray, $http) {
 
-        var vm = this;
+        var conect = function () {
+            client = new Paho.MQTT.Client("m12.cloudmqtt.com", Number(30310), "esp8266" + parseInt(Math.random() * 100, 10));
+            // set callback handlers
+            client.onConnectionLost = onConnectionLost;
+            client.onMessageArrived = onMessageArrived;
+        }
 
-        vm.name ='Marcelo';
-
-        client = new Paho.MQTT.Client("m12.cloudmqtt.com", Number(30310), "esp8266" + parseInt(Math.random() * 100, 10));
-        // set callback handlers
-        client.onConnectionLost = onConnectionLost;
-        client.onMessageArrived = onMessageArrived;
-
-
+        conect();
         // connect the client
         var options = {
             useSSL: true,

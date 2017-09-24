@@ -1,4 +1,4 @@
-angular.module('firebaseCtrl', ['chart.js'])
+angular.module('firebaseCtrl', ['chart.js', 'firebase'])
 
     .controller('firebaseController', function($scope, $firebaseArray, $http) {
 
@@ -6,29 +6,7 @@ angular.module('firebaseCtrl', ['chart.js'])
 
         vm.name ='Marcelo';
 
-
-        var firebaseRef = new Firebase('https://esp8266-50b55.firebaseio.com');
-
-        firebaseRef.child('.info/connected').on('value', function(connectedSnap) {
-            if (connectedSnap.val() === true) {
-                //console.log('Conectado ao firebase')
-                $scope.statusFirebase = 'Conectado'
-            } else {
-                //console.log('Não esta conectado ao Firebase')
-                $scope.statusFirebase = 'Conectando ao servidor Firebase......'
-            }
-        });
-
-        $http.get("https://esp8266-50b55.firebaseio.com/temperatura.json").then(function(res) {
-            var resultado = res.data;
-            //console.log(resultado)
-        });
-
-
-
-
-        var ref = new Firebase("https://esp8266-50b55.firebaseio.com/temperatura").limitToFirst(10);
-
+        var ref = firebase.database().ref().child("temperatura");
         $scope.dados = $firebaseArray(ref);
 
         dados = $firebaseArray(ref);

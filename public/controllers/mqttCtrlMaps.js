@@ -2,14 +2,14 @@ angular.module('mqttCtrlMaps', [])
 
     .controller('mqttControllerMaps', function($scope) {
 
-        var vm = this;
-
         var conect = function () {
             client = new Paho.MQTT.Client("m12.cloudmqtt.com", Number(30310), "esp8266" + parseInt(Math.random() * 100, 10));
             // set callback handlers
             client.onConnectionLost = onConnectionLost;
             client.onMessageArrived = onMessageArrived;
         }
+
+        conect();
 
         conect();
 
